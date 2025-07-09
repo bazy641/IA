@@ -2,16 +2,16 @@
 
 ## Introduction
 Ce rapport compare la gestion des données et la méthodologie d'intelligence artificielle de quatre projets :
-- **movie-recommender**
-- **medicinal-plant-classifier**
-- **traffic-flow-predictor**
-- **energy-demand-prediction**
+- **[movie-recommender](https://github.com/Nano-a/movie-recommender)**
+- **[medicinal-plant-classifier](https://github.com/Nano-a/medicinal-plant-classifier)**
+- **[traffic-flow-predictor](https://github.com/Nano-a/traffic-flow-predictor)**
+- **[energy-demand-prediction](https://github.com/Nano-a/energy-demand-prediction)**
 
 L'objectif est d'analyser, dossier par dossier et fichier par fichier, la façon dont chaque projet traite les données et implémente l'IA, en mettant en avant les différences et similitudes, sans s'attarder sur le sujet traité.
 
 ---
 
-## 1. movie-recommender
+## 1. [movie-recommender](https://github.com/Nano-a/movie-recommender)
 
 ### a. Chargement et gestion des données
 - **Fichiers utilisés** : `data/movies.csv`, `data/ratings.csv` (voir [model/recommender.py](movie-recommender/model/recommender.py) lignes 7-11)
@@ -36,7 +36,7 @@ L'objectif est d'analyser, dossier par dossier et fichier par fichier, la façon
 
 ---
 
-## 2. medicinal-plant-classifier
+## 2. [medicinal-plant-classifier](https://github.com/Nano-a/medicinal-plant-classifier)
 
 ### a. Chargement et gestion des données
 - **Fichiers utilisés** : `data/plants.csv` (et éventuellement `plants_extended.csv`) ([model/plant_classifier.py](medicinal-plant-classifier/model/plant_classifier.py) lignes 29-31)
@@ -59,7 +59,7 @@ L'objectif est d'analyser, dossier par dossier et fichier par fichier, la façon
 
 ---
 
-## 3. traffic-flow-predictor
+## 3. [traffic-flow-predictor](https://github.com/Nano-a/traffic-flow-predictor)
 
 ### a. Chargement et gestion des données
 - **Fichiers utilisés** : Données synthétiques générées à la volée, pas de fichier CSV par défaut ([model/traffic_model.py](traffic-flow-predictor/model/traffic_model.py) lignes 13-56)
@@ -80,7 +80,7 @@ L'objectif est d'analyser, dossier par dossier et fichier par fichier, la façon
 
 ---
 
-## 4. energy-demand-prediction
+## 4. [energy-demand-prediction](https://github.com/Nano-a/energy-demand-prediction)
 
 ### a. Chargement et gestion des données
 - **Fichiers utilisés** : `city-hall-electricity-use.csv` (données réelles de Boston) ([preprocessing.py](energy-demand-prediction/preprocessing.py) lignes 6-7)
@@ -125,10 +125,10 @@ L'objectif est d'analyser, dossier par dossier et fichier par fichier, la façon
 ---
 
 ## 6. Conclusion
-- **movie-recommender** utilise des données réelles, un double mode de recommandation (collaboratif et contenu), et une évaluation quantitative (RMSE).
-- **medicinal-plant-classifier** repose sur un jeu de données réel, un prétraitement complet (encodage + normalisation), et une évaluation multi-métriques.
-- **traffic-flow-predictor** se distingue par la génération de données synthétiques, un prétraitement minimal, et une évaluation simple mais automatisée.
-- **energy-demand-prediction** se caractérise par un pipeline complet de data science avec feature engineering temporel, multiples modèles (baseline, ML, deep learning), optimisation d'hyperparamètres, et une interface web Streamlit complète.
+- **[movie-recommender](https://github.com/Nano-a/movie-recommender)** utilise des données réelles, un double mode de recommandation (collaboratif et contenu), et une évaluation quantitative (RMSE).
+- **[medicinal-plant-classifier](https://github.com/Nano-a/medicinal-plant-classifier)** repose sur un jeu de données réel, un prétraitement complet (encodage + normalisation), et une évaluation multi-métriques.
+- **[traffic-flow-predictor](https://github.com/Nano-a/traffic-flow-predictor)** se distingue par la génération de données synthétiques, un prétraitement minimal, et une évaluation simple mais automatisée.
+- **[energy-demand-prediction](https://github.com/Nano-a/energy-demand-prediction)** se caractérise par un pipeline complet de data science avec feature engineering temporel, multiples modèles (baseline, ML, deep learning), optimisation d'hyperparamètres, et une interface web Streamlit complète.
 
 Pour chaque détail, tu peux te référer aux fichiers et lignes indiqués pour vérifier la gestion des données et la méthodologie IA.
 
