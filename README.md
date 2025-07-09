@@ -129,9 +129,3 @@ L'objectif est d'analyser, dossier par dossier et fichier par fichier, la façon
 - **[medicinal-plant-classifier](https://github.com/Nano-a/medicinal-plant-classifier)** repose sur un jeu de données réel, un prétraitement complet (encodage + normalisation), et une évaluation multi-métriques.
 - **[traffic-flow-predictor](https://github.com/Nano-a/traffic-flow-predictor)** se distingue par la génération de données synthétiques, un prétraitement minimal, et une évaluation simple mais automatisée.
 - **[energy-demand-prediction](https://github.com/Nano-a/energy-demand-prediction)** se caractérise par un pipeline complet de data science avec feature engineering temporel, multiples modèles (baseline, ML, deep learning), optimisation d'hyperparamètres, et une interface web Streamlit complète.
-
-Pour chaque détail, tu peux te référer aux fichiers et lignes indiqués pour vérifier la gestion des données et la méthodologie IA.
-
----
-
-*Rapport généré automatiquement. Pour toute question, consulte les fichiers référencés ou demande une analyse plus approfondie sur une partie précise.* 
